@@ -58,6 +58,9 @@
     <Compile Include="Vgm\Commands\Wait882SamplesCommand.cs" />
     <Compile Include="Vgm\Commands\Wait735SamplesCommand.cs" />
     <Compile Include="Vgm\Commands\WaitNSamplesCommand.cs" />
+    <Compile Include="Vgm\VersionAbstractionLayer\DevicePresence.cs" />
+    <Compile Include="Vgm\VersionAbstractionLayer\DeviceType.cs" />
+    <Compile Include="Vgm\VersionAbstractionLayer\SN76489Settings.cs" />
     <Compile Include="Vgm\Headers\V100HeaderPart.cs" />
     <Compile Include="Vgm\Headers\V101HeaderPart.cs" />
     <Compile Include="Vgm\Headers\V110HeaderPart.cs" />
@@ -69,6 +72,8 @@
     <Compile Include="Vgm\Headers\CommonHeaderPart.cs" />
     <Compile Include="Vgm\Reading\CommandsReader.cs" />
     <Compile Include="Vgm\Reading\CommandBodyReader.cs" />
+    <Compile Include="Vgm\VersionAbstractionLayer\VgmHeaderUtils.cs" />
+    <Compile Include="Vgm\VersionAbstractionLayer\YM2612Settings.cs" />
     <Compile Include="Vgm\VgmException.cs" />
     <Compile Include="Vgm\Headers\FormatVersion.cs" />
     <Compile Include="Vgm\Headers\VgmHeader.cs" />
