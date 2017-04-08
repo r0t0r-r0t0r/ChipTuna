@@ -78,7 +78,13 @@
     <Compile Include="Vgm\Headers\FormatVersion.cs" />
     <Compile Include="Vgm\Headers\VgmHeader.cs" />
     <Compile Include="Vgm\Reading\HeaderReader.cs" />
-    <Compile Include="WaveWriting\WaveUtils.cs" />
+    <Compile Include="Wave\ChunkHeader.cs" />
+    <Compile Include="Wave\DataChunk.cs" />
+    <Compile Include="Wave\FmtChunk.cs" />
+    <Compile Include="Wave\RiffChunk.cs" />
+    <Compile Include="Wave\WaveConstants.cs" />
+    <Compile Include="Wave\WaveData.cs" />
+    <Compile Include="Wave\WaveWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

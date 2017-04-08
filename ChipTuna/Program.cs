@@ -4,13 +4,13 @@ using ChipTuna.IO;
 using ChipTuna.Vgm.Commands;
 using ChipTuna.Vgm.Reading;
 using ChipTuna.Vgm.VersionAbstractionLayer;
-using ChipTuna.WaveWriting;
+using ChipTuna.Wave;
 
 namespace ChipTuna
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             var fileInfo = new FileInfo(args[0]);
 
@@ -24,7 +24,7 @@ namespace ChipTuna
                     var commands = CommandsReader.Read(header, reader);
 
                     var psg = new PsgOscillator();
-                    var wave = CreateWave(header.GetSamplesCount());
+                    var waveData = CreateWaveData(header.GetSamplesCount());
                     var sampleNumber = 0;
                     var amplitude = 15000f;
 
@@ -39,7 +39,7 @@ namespace ChipTuna
                                 for (uint i = 0; i < wnc.SamplesNumber; i++)
                                 {
                                     var value = psg.Step();
-                                    wave.Data[sampleNumber++] = (short)(amplitude * value);
+                                    waveData.Samples[sampleNumber++] = (short)(amplitude * value);
                                 }
                                 break;
                         }
@@ -49,25 +49,25 @@ namespace ChipTuna
                     {
                         using (var writer = new BinaryWriter(outputStream))
                         {
-                            WaveUtils.WriteWave(wave, writer, (w, s) => w.Write(s));
+                            WaveWriter.WriteWaveFile(waveData, writer);
                         }
                     }
                 }
             }
         }
 
-        private static Wave<short> CreateWave(long sampleCount)
+        private static WaveData<short> CreateWaveData(long sampleCount)
         {
             const uint sampleRate = 44100;
             var data = new short[sampleCount];
 
-            return new Wave<short>
+            return new WaveData<short>
             {
                 SampleRate = sampleRate,
                 NumberOfChannels = 1,
                 BitsPerSample = 16,
 
-                Data = data
+                Samples = data
             };
         }
     }
