@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ChipTuna
+namespace ChipTuna.Vgm
 {
 
     [Serializable]

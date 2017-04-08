@@ -1,4 +1,4 @@
-﻿namespace ChipTuna
+﻿namespace ChipTuna.IO
 {
     public interface ISequentialReader
     {

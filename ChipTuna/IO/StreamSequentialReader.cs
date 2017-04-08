@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace ChipTuna
+namespace ChipTuna.IO
 {
     public class StreamSequentialReader: ISequentialReader
     {

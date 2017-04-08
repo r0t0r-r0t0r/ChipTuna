@@ -42,9 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FuncVgmCommandReader.cs" />
-    <Compile Include="GenericVgmCommandReader.cs" />
-    <Compile Include="ISequentialReader.cs" />
+    <Compile Include="IO\ISequentialReader.cs" />
     <Compile Include="LinearFeedbackShiftRegister.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -52,14 +50,29 @@
     <Compile Include="PsgOscillator.cs" />
     <Compile Include="SequentialReaderUtils.cs" />
     <Compile Include="SquareOscillator.cs" />
-    <Compile Include="StreamSequentialReader.cs" />
-    <Compile Include="VgmCommand.cs" />
-    <Compile Include="IVgmCommandReader.cs" />
-    <Compile Include="VgmCommandReader.cs" />
-    <Compile Include="VgmException.cs" />
-    <Compile Include="VgmFormatVersion.cs" />
-    <Compile Include="VgmHeader.cs" />
-    <Compile Include="VgmHeaderReader.cs" />
+    <Compile Include="IO\StreamSequentialReader.cs" />
+    <Compile Include="Vgm\Commands\EndOfSoundDataCommand.cs" />
+    <Compile Include="Vgm\Commands\StubCommand.cs" />
+    <Compile Include="Vgm\Commands\PsgWriteCommand.cs" />
+    <Compile Include="Vgm\Commands\VgmCommand.cs" />
+    <Compile Include="Vgm\Commands\Wait882SamplesCommand.cs" />
+    <Compile Include="Vgm\Commands\Wait735SamplesCommand.cs" />
+    <Compile Include="Vgm\Commands\WaitNSamplesCommand.cs" />
+    <Compile Include="Vgm\Headers\V100HeaderPart.cs" />
+    <Compile Include="Vgm\Headers\V101HeaderPart.cs" />
+    <Compile Include="Vgm\Headers\V110HeaderPart.cs" />
+    <Compile Include="Vgm\Headers\V150HeaderPart.cs" />
+    <Compile Include="Vgm\Headers\V151HeaderPart.cs" />
+    <Compile Include="Vgm\Headers\V160HeaderPart.cs" />
+    <Compile Include="Vgm\Headers\V161HeaderPart.cs" />
+    <Compile Include="Vgm\Headers\V170HeaderPart.cs" />
+    <Compile Include="Vgm\Headers\CommonHeaderPart.cs" />
+    <Compile Include="Vgm\Reading\CommandsReader.cs" />
+    <Compile Include="Vgm\Reading\CommandBodyReader.cs" />
+    <Compile Include="Vgm\VgmException.cs" />
+    <Compile Include="Vgm\Headers\FormatVersion.cs" />
+    <Compile Include="Vgm\Headers\VgmHeader.cs" />
+    <Compile Include="Vgm\Reading\HeaderReader.cs" />
     <Compile Include="WaveWriting\WaveUtils.cs" />
   </ItemGroup>
   <ItemGroup>

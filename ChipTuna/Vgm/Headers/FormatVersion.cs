@@ -1,6 +1,6 @@
-﻿namespace ChipTuna
+﻿namespace ChipTuna.Vgm.Headers
 {
-    public enum VgmFormatVersion: uint
+    public enum FormatVersion: uint
     {
         V100 = 0x00000100,
         V101 = 0x00000101,
