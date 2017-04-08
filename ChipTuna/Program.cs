@@ -1,10 +1,11 @@
 ﻿using System.IO;
 using System.IO.Compression;
 using ChipTuna.IO;
+using ChipTuna.Emulation.SN76489;
 using ChipTuna.Vgm.Commands;
 using ChipTuna.Vgm.Reading;
 using ChipTuna.Vgm.VersionAbstractionLayer;
-using ChipTuna.Wave;
+using ChipTuna.Wav;
 
 namespace ChipTuna
 {
@@ -24,7 +25,7 @@ namespace ChipTuna
                     var commands = CommandsReader.Read(header, reader);
 
                     var psg = new PsgOscillator();
-                    var waveData = CreateWaveData(header.GetSamplesCount());
+                    var wave = CreateWave(header.GetSamplesCount());
                     var sampleNumber = 0;
                     var amplitude = 15000f;
 
@@ -39,7 +40,7 @@ namespace ChipTuna
                                 for (uint i = 0; i < wnc.SamplesNumber; i++)
                                 {
                                     var value = psg.Step();
-                                    waveData.Samples[sampleNumber++] = (short)(amplitude * value);
+                                    wave.Samples[sampleNumber++] = (short)(amplitude * value);
                                 }
                                 break;
                         }
@@ -49,19 +50,19 @@ namespace ChipTuna
                     {
                         using (var writer = new BinaryWriter(outputStream))
                         {
-                            WaveWriter.WriteWaveFile(waveData, writer);
+                            WavWriter.Write(wave, writer);
                         }
                     }
                 }
             }
         }
 
-        private static WaveData<short> CreateWaveData(long sampleCount)
+        private static Wave<short> CreateWave(long sampleCount)
         {
             const uint sampleRate = 44100;
             var data = new short[sampleCount];
 
-            return new WaveData<short>
+            return new Wave<short>
             {
                 SampleRate = sampleRate,
                 NumberOfChannels = 1,

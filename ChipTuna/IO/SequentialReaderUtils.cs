@@ -1,7 +1,6 @@
 ﻿using System;
-using ChipTuna.IO;
 
-namespace ChipTuna
+namespace ChipTuna.IO
 {
     public static class SequentialReaderUtils
     {

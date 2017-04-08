@@ -1,6 +1,7 @@
 ﻿using System;
+using ChipTuna.Sound;
 
-namespace ChipTuna
+namespace ChipTuna.Emulation.SN76489
 {
     public class PsgOscillator
     {
@@ -8,10 +9,10 @@ namespace ChipTuna
 
         private readonly SquareOscillator[] _oscillators = new SquareOscillator[]
         {
-            new SquareOscillator(SampleRate),
-            new SquareOscillator(SampleRate),
-            new SquareOscillator(SampleRate),
-            new SquareOscillator(SampleRate)
+            new SquareOscillator(SampleRate) {Amplitude = 0},
+            new SquareOscillator(SampleRate) {Amplitude = 0},
+            new SquareOscillator(SampleRate) {Amplitude = 0},
+            new SquareOscillator(SampleRate) {Amplitude = 0}
         };
 
         private readonly int[] _tones = new int[4];

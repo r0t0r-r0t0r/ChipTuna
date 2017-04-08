@@ -43,13 +43,18 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IO\ISequentialReader.cs" />
-    <Compile Include="LinearFeedbackShiftRegister.cs" />
+    <Compile Include="Emulation\SN76489\DataPsgCommand.cs" />
+    <Compile Include="Emulation\SN76489\LatchPsgCommand.cs" />
+    <Compile Include="Emulation\SN76489\LinearFeedbackShiftRegister.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PsgCommand.cs" />
-    <Compile Include="PsgOscillator.cs" />
-    <Compile Include="SequentialReaderUtils.cs" />
-    <Compile Include="SquareOscillator.cs" />
+    <Compile Include="Emulation\SN76489\PsgChannel.cs" />
+    <Compile Include="Emulation\SN76489\PsgCommand.cs" />
+    <Compile Include="Emulation\SN76489\PsgCommandUtils.cs" />
+    <Compile Include="Emulation\SN76489\PsgLatchType.cs" />
+    <Compile Include="Emulation\SN76489\PsgOscillator.cs" />
+    <Compile Include="IO\SequentialReaderUtils.cs" />
+    <Compile Include="Sound\SquareOscillator.cs" />
     <Compile Include="IO\StreamSequentialReader.cs" />
     <Compile Include="Vgm\Commands\EndOfSoundDataCommand.cs" />
     <Compile Include="Vgm\Commands\StubCommand.cs" />
@@ -78,13 +83,13 @@
     <Compile Include="Vgm\Headers\FormatVersion.cs" />
     <Compile Include="Vgm\Headers\VgmHeader.cs" />
     <Compile Include="Vgm\Reading\HeaderReader.cs" />
-    <Compile Include="Wave\ChunkHeader.cs" />
-    <Compile Include="Wave\DataChunk.cs" />
-    <Compile Include="Wave\FmtChunk.cs" />
-    <Compile Include="Wave\RiffChunk.cs" />
-    <Compile Include="Wave\WaveConstants.cs" />
-    <Compile Include="Wave\WaveData.cs" />
-    <Compile Include="Wave\WaveWriter.cs" />
+    <Compile Include="Wav\ChunkHeader.cs" />
+    <Compile Include="Wav\DataChunk.cs" />
+    <Compile Include="Wav\FmtChunk.cs" />
+    <Compile Include="Wav\RiffChunk.cs" />
+    <Compile Include="Wav\WavConstants.cs" />
+    <Compile Include="Wav\Wave.cs" />
+    <Compile Include="Wav\WavWriter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

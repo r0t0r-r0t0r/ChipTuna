@@ -1,56 +1,56 @@
 ﻿using System;
 using System.IO;
 
-namespace ChipTuna.Wave
+namespace ChipTuna.Wav
 {
-    public static class WaveWriter
+    public static class WavWriter
     {
 
-        public static void WriteWaveFile(WaveData<short> waveData, BinaryWriter writer)
+        public static void Write(Wave<short> wave, BinaryWriter writer)
         {
-            WriteWaveFile(waveData, writer, (w, s) => w.Write(s));
+            Write(wave, writer, (w, s) => w.Write(s));
         }
 
-        public static void WriteWaveFile<T>(WaveData<T> waveData, BinaryWriter writer,
+        public static void Write<T>(Wave<T> wave, BinaryWriter writer,
             Action<BinaryWriter, T> writeSample)
         {
-            int bytesPerSample = waveData.BitsPerSample / 8;
+            int bytesPerSample = wave.BitsPerSample / 8;
 
             const uint fmtSubchunkSize = 16;
-            uint dataSubchunkSize = (uint) (waveData.Samples.Length * bytesPerSample);
+            uint dataSubchunkSize = (uint) (wave.Samples.Length * bytesPerSample);
             uint riffChunkSize = 4 + (8 + fmtSubchunkSize) + (8 + dataSubchunkSize);
 
             var riffChunk = new RiffChunk
             {
                 Header = new ChunkHeader
                 {
-                    ChunkId = WaveConstants.RiffChunkId,
+                    ChunkId = WavConstants.RiffChunkId,
                     ChunkSize = riffChunkSize
                 },
-                Format = WaveConstants.RiffFormat
+                Format = WavConstants.RiffFormat
             };
             var fmtChunk = new FmtChunk
             {
                 Header = new ChunkHeader
                 {
-                    ChunkId = WaveConstants.FmtChunkId,
+                    ChunkId = WavConstants.FmtChunkId,
                     ChunkSize = fmtSubchunkSize
                 },
-                AudioFormat = WaveConstants.PcmAudioFormat,
-                NumberOfChannels = waveData.NumberOfChannels,
-                SampleRate = waveData.SampleRate,
-                ByteRate = (uint) (waveData.SampleRate * waveData.NumberOfChannels * bytesPerSample),
-                BlockAlign = (ushort) (waveData.NumberOfChannels * bytesPerSample),
-                BitsPerSample = waveData.BitsPerSample
+                AudioFormat = WavConstants.PcmAudioFormat,
+                NumberOfChannels = wave.NumberOfChannels,
+                SampleRate = wave.SampleRate,
+                ByteRate = (uint) (wave.SampleRate * wave.NumberOfChannels * bytesPerSample),
+                BlockAlign = (ushort) (wave.NumberOfChannels * bytesPerSample),
+                BitsPerSample = wave.BitsPerSample
             };
             var dataChunk = new DataChunk<T>
             {
                 Header = new ChunkHeader
                 {
-                    ChunkId = WaveConstants.DataChunkId,
+                    ChunkId = WavConstants.DataChunkId,
                     ChunkSize = dataSubchunkSize
                 },
-                Data = waveData.Samples
+                Data = wave.Samples
             };
 
             WriteChunkHeader(writer, riffChunk.Header);

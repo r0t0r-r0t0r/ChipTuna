@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text;
 
-namespace ChipTuna.Wave
+namespace ChipTuna.Wav
 {
-    public static class WaveConstants
+    public static class WavConstants
     {
         public static readonly uint RiffChunkId = StringToId("RIFF");
         public static readonly uint RiffFormat = StringToId("WAVE");

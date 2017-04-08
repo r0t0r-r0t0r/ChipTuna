@@ -1,6 +1,6 @@
-namespace ChipTuna.Wave
+namespace ChipTuna.Wav
 {
-    public class WaveData<TSample>
+    public class Wave<TSample>
     {
         public uint SampleRate;
         public ushort NumberOfChannels;

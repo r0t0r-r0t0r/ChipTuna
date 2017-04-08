@@ -1,4 +1,4 @@
-﻿namespace ChipTuna.Wave
+﻿namespace ChipTuna.Wav
 {
     public struct ChunkHeader
     {
