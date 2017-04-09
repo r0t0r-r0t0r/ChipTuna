@@ -56,13 +56,16 @@
     <Compile Include="IO\SequentialReaderUtils.cs" />
     <Compile Include="Sound\SquareOscillator.cs" />
     <Compile Include="IO\StreamSequentialReader.cs" />
+    <Compile Include="Vgm\Commands\DataBlockCommand.cs" />
     <Compile Include="Vgm\Commands\EndOfSoundDataCommand.cs" />
     <Compile Include="Vgm\Commands\StubCommand.cs" />
     <Compile Include="Vgm\Commands\PsgWriteCommand.cs" />
     <Compile Include="Vgm\Commands\VgmCommand.cs" />
     <Compile Include="Vgm\Commands\Wait882SamplesCommand.cs" />
     <Compile Include="Vgm\Commands\Wait735SamplesCommand.cs" />
+    <Compile Include="Vgm\Commands\WaitNPlusOneSamplesCommand.cs" />
     <Compile Include="Vgm\Commands\WaitNSamplesCommand.cs" />
+    <Compile Include="Vgm\Commands\YM2612Port0Address2AWriteThenWaitNSamplesCommand.cs" />
     <Compile Include="Vgm\VersionAbstractionLayer\DevicePresence.cs" />
     <Compile Include="Vgm\VersionAbstractionLayer\DeviceType.cs" />
     <Compile Include="Vgm\VersionAbstractionLayer\SN76489Settings.cs" />
