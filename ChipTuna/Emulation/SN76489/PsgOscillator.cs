@@ -24,6 +24,14 @@ namespace ChipTuna.Emulation.SN76489
         private int _prevNoiseSign = 1;
         private bool _lastLfsrValue = false;
 
+        public PsgOscillator()
+        {
+            UpdateFrequencyAndVolume(PsgChannel.Zero);
+            UpdateFrequencyAndVolume(PsgChannel.One);
+            UpdateFrequencyAndVolume(PsgChannel.Two);
+            UpdateFrequencyAndVolume(PsgChannel.Three);
+        }
+
         public void ApplyCommand(byte commandCode)
         {
             var command = PsgCommandUtils.Create(commandCode);
@@ -152,8 +160,10 @@ namespace ChipTuna.Emulation.SN76489
             }
         }
 
-        private bool IsLatchToneChannel() =>
-            _latchChannel == PsgChannel.Zero || _latchChannel == PsgChannel.One || _latchChannel == PsgChannel.Two;
+        private bool IsLatchToneChannel() => IsToneChannel(_latchChannel);
+
+        private static bool IsToneChannel(PsgChannel channel) =>
+            channel == PsgChannel.Zero || channel == PsgChannel.One || channel == PsgChannel.Two;
 
         private int[] _volumeTable =
         {
@@ -163,22 +173,29 @@ namespace ChipTuna.Emulation.SN76489
 
         private void UpdateLatchFrequencyAndVolume()
         {
-            var ch = (int)_latchChannel;
+            UpdateFrequencyAndVolume(_latchChannel);
+        }
 
+        private void UpdateFrequencyAndVolume(PsgChannel channel)
+        {
+            var ch = (int)channel;
             const int clock = 3579545;
             const int divider = 16;
-            var _halfWaveCounter = _tones[ch];
+            var halfWaveCounter = _tones[ch];
+
+            if (halfWaveCounter == 0)
+                halfWaveCounter = 1;
 
             var frequency = 0f;
 
-            if (_halfWaveCounter != 0)
-                frequency = (float)((double)clock / (2 * divider * _halfWaveCounter));
+            if (halfWaveCounter != 0)
+                frequency = (float) ((double) clock / (2 * divider * halfWaveCounter));
 
             var volume = _volumeTable[_volumes[ch]] / 32767f;
 
             _oscillators[ch].Amplitude = volume;
 
-            if (IsLatchToneChannel())
+            if (IsToneChannel(channel))
             {
                 _oscillators[ch].Frequency = frequency;
             }
@@ -186,7 +203,6 @@ namespace ChipTuna.Emulation.SN76489
             {
                 _oscillators[ch].Frequency = frequency / 2;
             }
-
         }
 
         public float Step()
