@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace ChipTuna.Sound
 {
-    public class SquareOscillator
+    public class SinOscillator
     {
         private readonly double _timeStep;
 
         private double _phase = 0;
 
-        public SquareOscillator(uint sampleRate)
+        public SinOscillator(uint sampleRate)
         {
             _timeStep = 1.0 / sampleRate;
         }
@@ -25,9 +29,8 @@ namespace ChipTuna.Sound
                 _phase -= 2 * Math.PI;
 
             var value = Math.Sin(_phase);
-            var sign = Math.Sign(value);
 
-            return sign > 0 ? Amplitude : -Amplitude;
+            return (float) (Amplitude * value);
         }
     }
 }

@@ -56,6 +56,7 @@
     <Compile Include="Emulation\SN76489\PsgLatchType.cs" />
     <Compile Include="Emulation\SN76489\PsgOscillator.cs" />
     <Compile Include="IO\SequentialReaderUtils.cs" />
+    <Compile Include="Sound\SinOscillator.cs" />
     <Compile Include="Sound\SquareOscillator.cs" />
     <Compile Include="IO\StreamSequentialReader.cs" />
     <Compile Include="Vgm\Commands\DataBlockCommand.cs" />

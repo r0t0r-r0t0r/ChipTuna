@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChipTuna", "ChipTuna\ChipTu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VgmRenderer", "VgmRenderer\VgmRenderer.csproj", "{775B5F6A-94BD-4745-B841-40D6DB548049}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FmPlayer", "FmPlayer\FmPlayer.csproj", "{55113C25-224A-4EF4-820B-C3804FDC4427}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{775B5F6A-94BD-4745-B841-40D6DB548049}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{775B5F6A-94BD-4745-B841-40D6DB548049}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{775B5F6A-94BD-4745-B841-40D6DB548049}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55113C25-224A-4EF4-820B-C3804FDC4427}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55113C25-224A-4EF4-820B-C3804FDC4427}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55113C25-224A-4EF4-820B-C3804FDC4427}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55113C25-224A-4EF4-820B-C3804FDC4427}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
