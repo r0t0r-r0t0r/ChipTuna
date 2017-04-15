@@ -1,17 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using ChipTuna.IO;
 using ChipTuna.Emulation.SN76489;
+using ChipTuna.IO;
 using ChipTuna.Vgm.Commands;
 using ChipTuna.Vgm.Headers;
 using ChipTuna.Vgm.Reading;
 using ChipTuna.Vgm.VersionAbstractionLayer;
 using ChipTuna.Wav;
 
-namespace ChipTuna
+namespace ChipTuna.VgmRenderer
 {
     internal delegate void VgmFileProcessor(string fileName, VgmHeader header, IEnumerable<VgmCommand> commands);
 
