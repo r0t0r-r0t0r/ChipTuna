@@ -5,10 +5,8 @@ namespace ChipTuna.Sound
     public class SquareOscillator
     {
         private readonly double _timeStep;
-        private float _amplitude = 0.5f;
-        private float _frequency = 440;
 
-        private double _time = 0;
+        private double _phase = 0;
         private bool _value;
 
         public SquareOscillator(uint sampleRate)
@@ -16,28 +14,18 @@ namespace ChipTuna.Sound
             _timeStep = 1.0 / sampleRate;
         }
 
-        public float Amplitude
-        {
-            get => _amplitude;
-            set
-            {
-                _amplitude = value;
-            }
-        }
+        public float Amplitude { get; set; } = 0.5f;
 
-        public float Frequency
-        {
-            get => _frequency;
-            set
-            {
-                _frequency = value;
-            }
-        }
+        public float Frequency { get; set; } = 440;
 
         public float Step()
         {
-            _time += _timeStep;
-            var value = Math.Sin(2 * Math.PI * _frequency * _time);
+            double deltaPhase = 2 * Math.PI * Frequency * _timeStep;
+            _phase += deltaPhase;
+            if (_phase > 2 * Math.PI)
+                _phase -= 2 * Math.PI;
+
+            var value = Math.Sin(_phase);
             var sign = Math.Sign(value);
             _value = sign > 0;
 
@@ -46,7 +34,7 @@ namespace ChipTuna.Sound
 
         private float GetValue()
         {
-            return _value ? _amplitude : -_amplitude;
+            return _value ? Amplitude : -Amplitude;
         }
     }
 }
