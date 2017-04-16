@@ -4,6 +4,7 @@ using System.IO.Compression;
 using System.Linq;
 using ChipTuna.Emulation.SN76489;
 using ChipTuna.IO;
+using ChipTuna.Rendering;
 using ChipTuna.Vgm.Commands;
 using ChipTuna.Vgm.Headers;
 using ChipTuna.Vgm.Reading;
@@ -54,34 +55,14 @@ namespace ChipTuna.VgmRenderer
 
         private static void RenderVgmToWav(string fileName, VgmHeader header, IEnumerable<VgmCommand> commands)
         {
-            var psg = new PsgOscillator();
             var wave = CreateWave(header.GetSamplesCount());
             var sampleNumber = 0;
             var amplitude = 15000f;
+            var values = Renderer.Render(commands);
 
-            void Wait(uint samplesNumber)
+            foreach (var value in values)
             {
-                for (uint i = 0; i < samplesNumber; i++)
-                {
-                    var value = psg.Step();
-                    wave.Samples[sampleNumber++] = (short) (amplitude * value);
-                }
-            }
-
-            foreach (var command in commands)
-            {
-                switch (command)
-                {
-                    case PsgWriteCommand wc:
-                        psg.ApplyCommand(wc.Data);
-                        break;
-                    case WaitNSamplesCommand wnc:
-                        Wait(wnc.SamplesNumber);
-                        break;
-                    case YM2612Port0Address2AWriteThenWaitNSamplesCommand wwc:
-                        Wait(wwc.SamplesNumber);
-                        break;
-                }
+                wave.Samples[sampleNumber++] = (short) (amplitude * value);
             }
 
             using (var outputStream = new FileStream(fileName + ".wav", FileMode.Create))
